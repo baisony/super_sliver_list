@@ -88,6 +88,7 @@ class ListController extends ChangeNotifier {
     required ScrollController scrollController,
     required double alignment,
     Rect? rect,
+    double padding,
   }) {
     assert(_delegate != null, "ListController is not attached.");
     final offset = getOffsetToReveal(index, alignment, rect: rect);
@@ -101,7 +102,7 @@ class ListController extends ChangeNotifier {
           (offset >= maxExtent && pixels == maxExtent)) {
         return;
       }
-      scrollController.jumpTo(offset);
+      scrollController.jumpTo(offset + padding);
     } else {
       _log.warning("getOffsetToReveal returned non-finite value.");
     }
